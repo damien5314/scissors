@@ -37,6 +37,7 @@ class TouchManager {
     private int viewportHeight;
     private int bitmapWidth;
     private int bitmapHeight;
+    private int viewportBorderSize;
 
     private int verticalLimit;
     private int horizontalLimit;
@@ -52,6 +53,7 @@ class TouchManager {
         previousPoints = new TouchPoint[maxNumberOfTouchPoints];
         minimumScale = cropViewConfig.getMinScale();
         maximumScale = cropViewConfig.getMaxScale();
+        viewportBorderSize = cropViewConfig.getViewportBorderSize();
     }
 
     @TargetApi(Build.VERSION_CODES.FROYO)
@@ -102,6 +104,10 @@ class TouchManager {
 
     public int getViewportHeight() {
         return viewportHeight;
+    }
+
+    public int getViewportBorderSize() {
+        return viewportBorderSize;
     }
 
     public float getAspectRatio() {
@@ -199,8 +205,8 @@ class TouchManager {
     }
 
     private void setLimits() {
-        horizontalLimit = computeLimit((int) (bitmapWidth * scale), viewportWidth);
-        verticalLimit = computeLimit((int) (bitmapHeight * scale), viewportHeight);
+        horizontalLimit = computeLimit((int) (bitmapWidth * scale), viewportWidth, viewportBorderSize);
+        verticalLimit = computeLimit((int) (bitmapHeight * scale), viewportHeight, viewportBorderSize);
     }
 
     private void setMinimumScale() {
@@ -256,8 +262,8 @@ class TouchManager {
                 : vector(previousPoints[indexA], previousPoints[indexB]);
     }
 
-    private static int computeLimit(int bitmapSize, int viewportSize) {
-        return (bitmapSize - viewportSize) / 2;
+    private static int computeLimit(int bitmapSize, int viewportSize, int borderSize) {
+        return (bitmapSize - viewportSize - borderSize) / 2;
     }
 
     private static TouchPoint vector(TouchPoint a, TouchPoint b) {

@@ -28,6 +28,7 @@ class CropViewConfig {
     public static final int DEFAULT_VIEWPORT_OVERLAY_PADDING = 0;
     public static final int DEFAULT_VIEWPORT_OVERLAY_COLOR = 0xC8000000; // Black with 200 alpha
     public static final boolean DEFAULT_IS_OVAL = false;
+    public static final int DEFAULT_VIEWPORT_BORDER_SIZE = 0;
 
     private float viewportRatio = DEFAULT_VIEWPORT_RATIO;
     private float maxScale = DEFAULT_MAXIMUM_SCALE;
@@ -35,6 +36,7 @@ class CropViewConfig {
     private int viewportOverlayPadding = DEFAULT_VIEWPORT_OVERLAY_PADDING;
     private int viewportOverlayColor = DEFAULT_VIEWPORT_OVERLAY_COLOR;
     private boolean isOval = DEFAULT_IS_OVAL;
+    private int viewportBorderSize = DEFAULT_VIEWPORT_BORDER_SIZE;
 
     public int getViewportOverlayColor() {
         return viewportOverlayColor;
@@ -84,6 +86,14 @@ class CropViewConfig {
         this.isOval = isOval;
     }
 
+    public int getViewportBorderSize() {
+        return viewportBorderSize;
+    }
+
+    public void setViewportBorderSize(int size) {
+        this.viewportBorderSize = size;
+    }
+
     public static CropViewConfig from(Context context, AttributeSet attrs) {
         final CropViewConfig cropViewConfig = new CropViewConfig();
 
@@ -118,6 +128,10 @@ class CropViewConfig {
         cropViewConfig.setOval(
             attributes.getBoolean(R.styleable.CropView_cropviewIsOval,
                 CropViewConfig.DEFAULT_IS_OVAL));
+
+        cropViewConfig.setViewportBorderSize(
+            attributes.getDimensionPixelSize(R.styleable.CropView_cropviewViewportBorderSize,
+                CropViewConfig.DEFAULT_VIEWPORT_BORDER_SIZE));
 
         attributes.recycle();
 

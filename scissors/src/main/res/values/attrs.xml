@@ -13,5 +13,7 @@
         <attr name="cropviewMinScale" format="float" />
         <!-- Shape -->
         <attr name="cropviewIsOval" format="boolean" />
+        <!-- Viewport border width -->
+        <attr name="cropviewViewportBorderSize" format="dimension" />
     </declare-styleable>
 </resources>

@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -52,6 +53,7 @@ public class CropView extends ImageView {
 
     private Paint viewportPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint bitmapPaint = new Paint();
+    private Paint borderPaint = new Paint();
 
     private Bitmap bitmap;
     private Matrix transform = new Matrix();
@@ -79,6 +81,9 @@ public class CropView extends ImageView {
 
         bitmapPaint.setFilterBitmap(true);
         viewportPaint.setColor(config.getViewportOverlayColor());
+        borderPaint.setColor(Color.WHITE);
+        borderPaint.setStyle(Paint.Style.STROKE);
+        borderPaint.setStrokeWidth(touchManager.getViewportBorderSize());
         isOval = config.isOval();
     }
 
@@ -164,6 +169,14 @@ public class CropView extends ImageView {
         ovalPath.lineTo(getWidth() / 2, bottom);
         ovalPath.close();
         canvas.drawPath(ovalPath, viewportPaint);
+
+        if (touchManager.getViewportBorderSize() > 0) {
+            canvas.drawCircle(
+                    getWidth() / 2,
+                    getHeight() / 2,
+                    (right - left - touchManager.getViewportBorderSize()) / 2,
+                    borderPaint);
+        }
 
         canvas.drawRect(0, top, left, getHeight() - top, viewportPaint); // left
         canvas.drawRect(0, 0, getWidth(), top, viewportPaint); // top
