@@ -170,18 +170,18 @@ public class CropView extends ImageView {
         ovalPath.close();
         canvas.drawPath(ovalPath, viewportPaint);
 
-        if (touchManager.getViewportBorderSize() > 0) {
-            canvas.drawCircle(
-                    getWidth() / 2,
-                    getHeight() / 2,
-                    (right - left - touchManager.getViewportBorderSize()) / 2,
-                    borderPaint);
-        }
-
         canvas.drawRect(0, top, left, getHeight() - top, viewportPaint); // left
         canvas.drawRect(0, 0, getWidth(), top, viewportPaint); // top
         canvas.drawRect(getWidth() - left, top, getWidth(), getHeight() - top, viewportPaint); // right
         canvas.drawRect(0, getHeight() - top, getWidth(), getHeight(), viewportPaint); // bottom
+
+        if (touchManager.getViewportBorderSize() > 0) {
+            canvas.drawCircle(
+                    getWidth() / 2,
+                    getHeight() / 2,
+                    (right - left + touchManager.getViewportBorderSize()) / 2,
+                    borderPaint);
+        }
     }
 
     @Override

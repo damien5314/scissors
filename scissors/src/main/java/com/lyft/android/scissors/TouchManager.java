@@ -85,6 +85,8 @@ class TouchManager {
     }
 
     public void resetFor(int bitmapWidth, int bitmapHeight, int availableWidth, int availableHeight) {
+//        availableWidth -= viewportBorderSize * 2;
+//        availableHeight -= viewportBorderSize * 2;
         aspectRatio = cropViewConfig.getViewportRatio();
         imageBounds = new Rect(0, 0, availableWidth / 2, availableHeight / 2);
         setViewport(bitmapWidth, bitmapHeight, availableWidth, availableHeight);
@@ -205,8 +207,8 @@ class TouchManager {
     }
 
     private void setLimits() {
-        horizontalLimit = computeLimit((int) (bitmapWidth * scale), viewportWidth, viewportBorderSize);
-        verticalLimit = computeLimit((int) (bitmapHeight * scale), viewportHeight, viewportBorderSize);
+        horizontalLimit = computeLimit((int) (bitmapWidth * scale), viewportWidth);
+        verticalLimit = computeLimit((int) (bitmapHeight * scale), viewportHeight);
     }
 
     private void setMinimumScale() {
@@ -262,8 +264,8 @@ class TouchManager {
                 : vector(previousPoints[indexA], previousPoints[indexB]);
     }
 
-    private static int computeLimit(int bitmapSize, int viewportSize, int borderSize) {
-        return (bitmapSize - viewportSize - borderSize) / 2;
+    private static int computeLimit(int bitmapSize, int viewportSize) {
+        return (bitmapSize - viewportSize) / 2;
     }
 
     private static TouchPoint vector(TouchPoint a, TouchPoint b) {
