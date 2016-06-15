@@ -53,7 +53,7 @@ public class CropView extends ImageView {
 
     private Paint viewportPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint bitmapPaint = new Paint();
-    private Paint borderPaint = new Paint();
+    private Paint borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     private Bitmap bitmap;
     private Matrix transform = new Matrix();
