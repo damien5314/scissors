@@ -179,7 +179,7 @@ public class CropView extends ImageView {
             canvas.drawCircle(
                     getWidth() / 2,
                     getHeight() / 2,
-                    (right - left + touchManager.getViewportBorderSize()) / 2,
+                    (right - left - touchManager.getViewportBorderSize()) / 2,
                     borderPaint);
         }
     }

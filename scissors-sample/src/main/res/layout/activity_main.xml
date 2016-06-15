@@ -9,8 +9,8 @@
         android:id="@+id/crop_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cropviewViewportOverlayPadding="10dp"
-        app:cropviewViewportBorderSize="2dp"
+        app:cropviewViewportOverlayPadding="8dp"
+        app:cropviewViewportBorderSize="8dp"
         app:cropviewIsOval="true"
         />
 

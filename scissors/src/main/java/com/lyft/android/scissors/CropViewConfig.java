@@ -82,7 +82,7 @@ class CropViewConfig {
         return isOval;
     }
 
-    public void setOval(boolean isOval) {
+    void setOval(boolean isOval) {
         this.isOval = isOval;
     }
 
@@ -90,7 +90,7 @@ class CropViewConfig {
         return viewportBorderSize;
     }
 
-    public void setViewportBorderSize(int size) {
+    void setViewportBorderSize(int size) {
         this.viewportBorderSize = size;
     }
 

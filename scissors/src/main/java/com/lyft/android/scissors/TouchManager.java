@@ -85,8 +85,6 @@ class TouchManager {
     }
 
     public void resetFor(int bitmapWidth, int bitmapHeight, int availableWidth, int availableHeight) {
-//        availableWidth -= viewportBorderSize * 2;
-//        availableHeight -= viewportBorderSize * 2;
         aspectRatio = cropViewConfig.getViewportRatio();
         imageBounds = new Rect(0, 0, availableWidth / 2, availableHeight / 2);
         setViewport(bitmapWidth, bitmapHeight, availableWidth, availableHeight);
@@ -197,11 +195,15 @@ class TouchManager {
 
         if (ratio > viewAspect) {
             // viewport is wider than view
-            viewportWidth = availableWidth - cropViewConfig.getViewportOverlayPadding() * 2;
+            viewportWidth = availableWidth
+                    - cropViewConfig.getViewportOverlayPadding() * 2
+                    - cropViewConfig.getViewportBorderSize() * 2;
             viewportHeight = (int) (viewportWidth * (1 / ratio));
         } else {
             // viewport is taller than view
-            viewportHeight = availableHeight - cropViewConfig.getViewportOverlayPadding() * 2;
+            viewportHeight = availableHeight
+                    - cropViewConfig.getViewportOverlayPadding() * 2
+                    - cropViewConfig.getViewportBorderSize() * 2;
             viewportWidth = (int) (viewportHeight * ratio);
         }
     }
