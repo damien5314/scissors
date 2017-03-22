@@ -57,7 +57,7 @@ public class CropView extends ImageView {
     private Matrix transform = new Matrix();
     private Extensions extensions;
 
-    private boolean isOval = false;
+    private int shape = 0;
     private Path ovalPath = new Path();
     private RectF ovalRect = new RectF();
 
@@ -79,7 +79,7 @@ public class CropView extends ImageView {
 
         bitmapPaint.setFilterBitmap(true);
         setViewportOverlayColor(config.getViewportOverlayColor());
-        isOval = config.isOval();
+        shape = config.shape();
     }
 
     @Override
@@ -91,10 +91,10 @@ public class CropView extends ImageView {
         }
 
         drawBitmap(canvas);
-        if (isOval) {
-            drawOvalOverlay(canvas);
-        } else {
+        if (shape == 0) {
             drawSquareOverlay(canvas);
+        } else {
+            drawOvalOverlay(canvas);
         }
     }
 
