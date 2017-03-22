@@ -50,7 +50,7 @@ public class CropView extends ImageView {
     private TouchManager touchManager;
     private CropViewConfig config;
 
-    private Paint viewportPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint viewportPaint = new Paint();
     private Paint bitmapPaint = new Paint();
 
     private Bitmap bitmap;
@@ -80,6 +80,11 @@ public class CropView extends ImageView {
         bitmapPaint.setFilterBitmap(true);
         setViewportOverlayColor(config.getViewportOverlayColor());
         shape = config.shape();
+
+        // If shape is not a rectangle, we need anti-aliased Paint to smooth the curved edges
+        if (shape != 0) {
+            viewportPaint.setFlags(viewportPaint.getFlags() | Paint.ANTI_ALIAS_FLAG);
+        }
     }
 
     @Override
