@@ -65,7 +65,8 @@ class GlideFillViewportTransformation extends BitmapTransformation {
 
     @Override
     public int hashCode() {
-        return ID.hashCode();
+        int hash = viewportWidth * 31 + viewportHeight;
+        return hash * 17 + ID.hashCode();
     }
 
     @Override
