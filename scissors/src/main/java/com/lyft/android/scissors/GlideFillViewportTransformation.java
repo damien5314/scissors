@@ -56,7 +56,11 @@ class GlideFillViewportTransformation extends BitmapTransformation {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof GlideFillViewportTransformation;
+        if (obj instanceof GlideFillViewportTransformation) {
+            GlideFillViewportTransformation other = (GlideFillViewportTransformation) obj;
+            return other.viewportWidth == viewportWidth && other.viewportHeight == viewportHeight;
+        }
+        return false;
     }
 
     @Override
