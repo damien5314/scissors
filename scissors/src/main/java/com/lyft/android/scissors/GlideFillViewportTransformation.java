@@ -64,12 +64,12 @@ class GlideFillViewportTransformation extends BitmapTransformation {
         return ID.hashCode();
     }
 
-    public static BitmapTransformation createUsing(int viewportWidth, int viewportHeight) {
-        return new GlideFillViewportTransformation(viewportWidth, viewportHeight);
-    }
-
     @Override
     public void updateDiskCacheKey(MessageDigest messageDigest) {
         messageDigest.update(ID_BYTES);
+    }
+
+    public static BitmapTransformation createUsing(int viewportWidth, int viewportHeight) {
+        return new GlideFillViewportTransformation(viewportWidth, viewportHeight);
     }
 }
