@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -21,19 +22,19 @@ android {
 
 dependencies {
     // Test
-    testCompile 'junit:junit:' + rootProject.ext.junitVersion
-    testCompile 'org.mockito:mockito-core:' + rootProject.ext.mockitoVersion
-    testCompile 'org.robolectric:robolectric:' + rootProject.ext.robolectricVersion
-    testCompile 'org.assertj:assertj-core:' + rootProject.ext.assertjVersion
+    testImplementation 'junit:junit:' + rootProject.ext.junitVersion
+    testImplementation 'org.mockito:mockito-core:' + rootProject.ext.mockitoVersion
+    testImplementation 'org.robolectric:robolectric:' + rootProject.ext.robolectricVersion
+    testImplementation 'org.assertj:assertj-core:' + rootProject.ext.assertjVersion
     // Support Annotations
-    compile 'com.android.support:support-annotations:' + rootProject.ext.supportVersion
+    implementation 'androidx.annotation:annotation:' + rootProject.ext.androidxVersion
     // Optional dependencies for extensions
     // Picasso
-    provided 'com.squareup.picasso:picasso:[2.4.0, 2.5.2)'
+    compileOnly 'com.squareup.picasso:picasso:[2.4.0, 2.5.2)'
     // Glide
-    provided 'com.github.bumptech.glide:glide:4.1.1'
-    provided 'com.nostra13.universalimageloader:universal-image-loader:[1.9.2, 1.9.5)'
-    provided 'com.android.support:support-v4:' + rootProject.ext.supportVersion
+    compileOnly 'com.github.bumptech.glide:glide:' + rootProject.ext.glideVersion
+    compileOnly 'com.nostra13.universalimageloader:universal-image-loader:[1.9.2, 1.9.5)'
+    compileOnly 'androidx.legacy:legacy-support-v4:' + rootProject.ext.androidxVersion
 }
 
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
