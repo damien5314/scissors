@@ -19,11 +19,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.io.File;
 
 public class CropResultActivity extends Activity {
@@ -43,17 +45,17 @@ public class CropResultActivity extends Activity {
         String filePath = getIntent().getStringExtra(EXTRA_FILE_PATH);
         File imageFile = new File(filePath);
 
-//        Picasso.with(this)
-//                .load(imageFile)
-//                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-//                .into(resultView);
+        Picasso.with(this)
+                .load(imageFile)
+                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .into(resultView);
 
         // Or Glide
-        Glide.with(this)
-                .load(imageFile)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .into(resultView);
+        //Glide.with(this)
+        //        .load(imageFile)
+        //        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        //        .skipMemoryCache(true)
+        //        .into(resultView);
 
         // Or Android-Universal-Image-Loader
         //DisplayImageOptions options = new DisplayImageOptions.Builder()
