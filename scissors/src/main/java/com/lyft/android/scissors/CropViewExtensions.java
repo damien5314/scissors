@@ -20,13 +20,14 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.ViewTreeObserver;
 
 import java.io.File;
 import java.io.OutputStream;
 import java.util.concurrent.Future;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 class CropViewExtensions {
 
@@ -150,7 +151,7 @@ class CropViewExtensions {
         /**
          * Maximum dimensions of the output image. By default, the output image is not downscaled.
          *
-         * @param width Maximum width in pixels
+         * @param width  Maximum width in pixels
          * @param height Maximum height in pixels
          * @return current request for chaining.
          */
@@ -176,7 +177,7 @@ class CropViewExtensions {
         /**
          * Asynchronously flush cropped bitmap into provided stream.
          *
-         * @param outputStream Stream to write to
+         * @param outputStream  Stream to write to
          * @param closeWhenDone wetter or not to close provided stream once flushing is done
          * @return {@link Future} used to cancel or wait for this request.
          */

@@ -35,10 +35,13 @@ import com.squareup.leakcanary.RefWatcher;
 import java.io.File;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+import butterknife.Setter;
+import butterknife.ViewCollections;
 import rx.Observable;
 import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
@@ -49,17 +52,17 @@ import static rx.schedulers.Schedulers.io;
 
 public class MainActivity extends Activity {
 
-    private static final float[] ASPECT_RATIOS = { 0f, 1f, 6f/4f, 16f/9f };
+    private static final float[] ASPECT_RATIOS = {0f, 1f, 6f / 4f, 16f / 9f};
 
-    private static final String[] ASPECT_LABELS = { "\u00D8", "1:1", "6:4", "16:9" };
+    private static final String[] ASPECT_LABELS = {"\u00D8", "1:1", "6:4", "16:9"};
 
-    @Bind(R.id.crop_view)
+    @BindView(R.id.crop_view)
     CropView cropView;
 
-    @Bind({ R.id.crop_fab, R.id.pick_mini_fab, R.id.ratio_fab })
+    @BindViews({ R.id.crop_fab, R.id.pick_mini_fab, R.id.ratio_fab })
     List<View> buttons;
 
-    @Bind(R.id.pick_fab)
+    @BindView(R.id.pick_fab)
     View pickButton;
 
     CompositeSubscription subscriptions = new CompositeSubscription();
@@ -68,12 +71,12 @@ public class MainActivity extends Activity {
     private AnimatorListener animatorListener = new AnimatorListener() {
         @Override
         public void onAnimationStart(Animator animation) {
-            ButterKnife.apply(buttons, VISIBILITY, View.INVISIBLE);
+            ViewCollections.set(buttons, VISIBILITY, View.INVISIBLE);
         }
 
         @Override
         public void onAnimationEnd(Animator animation) {
-            ButterKnife.apply(buttons, VISIBILITY, View.VISIBLE);
+            ViewCollections.set(buttons, VISIBILITY, View.VISIBLE);
         }
 
         @Override
@@ -131,7 +134,7 @@ public class MainActivity extends Activity {
                 }));
     }
 
-    @OnClick({ R.id.pick_fab, R.id.pick_mini_fab })
+    @OnClick({R.id.pick_fab, R.id.pick_mini_fab})
     public void onPickClicked() {
         cropView.extensions()
                 .pickUsing(this, RequestCodes.PICK_IMAGE_FROM_GALLERY);
@@ -178,21 +181,21 @@ public class MainActivity extends Activity {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-                ButterKnife.apply(buttons, VISIBILITY, View.INVISIBLE);
+                ViewCollections.set(buttons, VISIBILITY, View.INVISIBLE);
                 break;
             default:
-                ButterKnife.apply(buttons, VISIBILITY, View.VISIBLE);
+                ViewCollections.set(buttons, VISIBILITY, View.VISIBLE);
                 break;
         }
         return true;
     }
 
     private void updateButtons() {
-        ButterKnife.apply(buttons, VISIBILITY, View.VISIBLE);
+        ViewCollections.set(buttons, VISIBILITY, View.VISIBLE);
         pickButton.setVisibility(View.GONE);
     }
 
-    static final ButterKnife.Setter<View, Integer> VISIBILITY = new ButterKnife.Setter<View, Integer>() {
+    static final Setter<View, Integer> VISIBILITY = new Setter<View, Integer>() {
         @Override
         public void set(final View view, final Integer visibility, int index) {
             view.setVisibility(visibility);

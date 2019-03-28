@@ -19,7 +19,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.io.File;
@@ -28,6 +27,8 @@ import java.io.OutputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import androidx.annotation.Nullable;
 
 class Utils {
 

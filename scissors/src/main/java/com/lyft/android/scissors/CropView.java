@@ -15,6 +15,7 @@
  */
 package com.lyft.android.scissors;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -29,10 +30,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
@@ -40,6 +37,11 @@ import com.lyft.android.scissors.CropViewExtensions.CropRequest;
 import com.lyft.android.scissors.CropViewExtensions.LoadRequest;
 import java.io.File;
 import java.io.OutputStream;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * An {@link ImageView} with a fixed viewport and cropping capabilities.
@@ -236,6 +238,7 @@ public class CropView extends ImageView {
     }
 
     @Override
+    @SuppressLint("ResourceType")
     public void setImageResource(@DrawableRes int resId) {
         final Bitmap bitmap = resId > 0
                 ? BitmapFactory.decodeResource(getResources(), resId)

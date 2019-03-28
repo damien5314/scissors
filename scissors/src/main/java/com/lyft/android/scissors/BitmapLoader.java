@@ -15,9 +15,10 @@
  */
 package com.lyft.android.scissors;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Load extension delegates actual Bitmap loading to a BitmapLoader allowing it to use different implementations.

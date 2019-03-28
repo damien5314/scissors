@@ -12,7 +12,7 @@
         app:cropviewViewportRatio="1"
         />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/crop_fab"
         style="@style/FloatingActionButton"
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:src="@drawable/ic_content_content_cut"
         android:visibility="gone" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pick_mini_fab"
         style="@style/FloatingActionButton"
         android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
         android:visibility="gone"
         app:fabSize="mini" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pick_fab"
         style="@style/FloatingActionButton"
         android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_content_add" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ratio_fab"
         style="@style/FloatingActionButton"
         android:layout_width="wrap_content"
